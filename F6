@@ -1,0 +1,8 @@
+select * from tb_project_dtl
+select * from tb_emp_project_map_dtl
+select * from tb_employee_dtl
+
+SELECT emp_name,emp_salary from tb_employee_dtl 
+WHERE emp_salary BETWEEN 10000 AND 50000;
+
+			 

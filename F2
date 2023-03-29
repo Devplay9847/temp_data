@@ -1,0 +1,8 @@
+select * from tb_project_dtl
+select * from tb_emp_project_map_dtl
+select * from tb_employee_dtl
+
+SELECT emp_name,project_name FROM tb_employee_dtl as e
+INNER JOIN tb_emp_project_map_dtl as m ON e.emp_id=m.emp_id
+INNER JOIN tb_project_dtl as p ON m.project_id =p.project_id
+WHERE NOT project_name = 'EME';

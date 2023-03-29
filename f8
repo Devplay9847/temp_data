@@ -1,0 +1,9 @@
+select * from tb_project_dtl
+select * from tb_emp_project_map_dtl
+select * from tb_employee_dtl
+
+
+SELECT MAX(emp_salary) AS maximum_salary from tb_employee_dtl;
+
+
+			 

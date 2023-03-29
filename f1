@@ -1,0 +1,4 @@
+select e.emp_name, pd.project_name from tb_emp_project_map_dtl as pm
+inner join tb_employee_dtl as e on e.emp_id = pm.emp_id
+inner join tb_project_dtl as pd on pm.project_id = pd.project_id
+WHERE pd.project_name ='BRO'

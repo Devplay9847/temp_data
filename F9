@@ -1,0 +1,8 @@
+select * from tb_project_dtl
+select * from tb_emp_project_map_dtl
+select * from tb_employee_dtl
+
+SELECT emp_name, SUM(emp_salary), AVG(emp_salary) FROM tb_employee_dtl
+GROUP BY emp_name
+
+			 
