@@ -1,0 +1,8 @@
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_emp_project_map_dtl
+SELECT * FROM districtmst
+
+SELECT emp_name,districtname FROM tb_employee_dtl e
+INNER JOIN districtmst AS d ON d.did=e.city_id
+WHERE districtname='Gandhinagar'
+

@@ -1,0 +1,28 @@
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_emp_project_map_dtl
+SELECT * FROM districtmst
+SELECT * FROM tb_qualification_dtl
+SELECT * FROM tb_project_dtl
+SELECT * FROM tb_designation_dtl
+SELECT * FROM tb_organisation_dtl
+select * from tb_emp_project_map_dtl
+select * from tb_employee_dtl
+select * from tb_qualification_dtl
+
+select emp_name,age(emp_dob),organisation,qualification_name designation_name,emp_salary,age(hire_date),project_name from tb_emp_project_map_dtl as pm
+inner join tb_employee_dtl as e on e.emp_id = pm.emp_id
+inner join tb_project_dtl as pd on pm.project_id = pd.project_id
+inner join tb_designation_dtl as d ON d.id=e.designation_id
+inner join tb_organisation_dtl as o ON o.id=e.organisation_id
+INNER JOIN tb_qualification_dtl as q ON q.id=e.qualification_id
+WHERE EXTRACT (YEAR FROM age(CURRENT_DATE,hire_date))>5 AND (qualification_name='M.E' OR qualification_name='MSC')
+AND EXTRACT(YEAR FROM age(CURRENT_DATE,emp_dob))> 25
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+SELECT * from tb_employee_dtl
+where extract ('year' from hire_date) = 2018
+
+
+			 

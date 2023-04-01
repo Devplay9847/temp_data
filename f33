@@ -1,0 +1,66 @@
+SELECT emp_name,age(hire_date),
+CASE
+WHEN EXTRACT(YEAR
+              FROM age(CURRENT_DATE, hire_date))> 8 AND qualification_id=1 OR qualification_id=2 THEN 'PROJECT MANAGER'			  
+WHEN EXTRACT(YEAR
+              FROM age(CURRENT_DATE, hire_date)) > 6 AND qualification_id=1 OR qualification_id=2 THEN 'Technical head'
+WHEN EXTRACT(YEAR
+              FROM age(CURRENT_DATE, hire_date))>= 2 AND EXTRACT(YEAR
+              FROM age(CURRENT_DATE, hire_date))<= 6
+			  AND qualification_id=1 OR qualification_id=3 OR qualification_id=4 THEN 'Team Leader'
+		
+WHEN EXTRACT(YEAR
+              FROM age(CURRENT_DATE, hire_date)) >= 1AND EXTRACT(YEAR
+              FROM age(CURRENT_DATE, hire_date))<= 2
+			  AND qualification_id=1 OR qualification_id=3 OR qualification_id=3 THEN 'Developer'	
+WHEN EXTRACT(YEAR
+              FROM age(CURRENT_DATE, hire_date)) <1 AND qualification_id=3 OR qualification_id=5 THEN 'Junior Developers'
+WHEN EXTRACT(YEAR
+             FROM age(CURRENT_DATE, hire_date)) >3 AND qualification_id=6 THEN 'Network Group'	
+END designation_name
+
+from tb_emp_project_map_dtl as pm
+inner join tb_employee_dtl as e on e.emp_id = pm.emp_id
+inner join tb_project_dtl as pd on pm.project_id = pd.project_id
+inner join tb_designation_dtl as d ON d.id=e.designation_id
+inner join tb_organisation_dtl as o ON o.id=e.organisation_id
+inner join tb_qualification_dtl as q ON q.id=e.qualification_id
+
+
+
+
+
+
+
+select 
+f.emp_name,f.qualification_id,f.experience,
+(	
+case
+
+-- 	first case
+	when qualification_id='9' and experience >=8 then 'Manager'
+	
+-- 	second case
+	when qualification_id='8' and experience >=6 then 'Technical Head'
+	
+-- 	third case
+	when qualification_id='1' and experience >=2 and experience<=6 then 'Team Leader'
+	
+-- 	fourth case
+	when qualification_id='9' and experience <=2 and experience>=1 then 'Developers'
+	
+-- 	fifth case
+	when qualification_id='8' and experience<1 then 'Junior Developers'
+	
+-- 	sixth case
+	when qualification_id='6' and experience >3 then 'Network Group'
+	
+	else 'Others'
+end
+)
+case 
+
+from (select e.joining_date,e.qualification_id,e.emp_name,extract(year from age(CURRENT_DATE, e.joining_date)) as experience
+	 from tb_employee_dtl e ) as f;
+
+

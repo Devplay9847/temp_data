@@ -1,0 +1,15 @@
+SELECT * FROM tb_employee_dtl  
+SELECT * FROM tb_organisation_dtl
+SELECT * FROM tb_leave_dtl
+
+SELECT emp_name,organisation,no_of_leave FROM tb_employee_dtl e
+INNER JOIN tb_organisation_dtl AS o ON o.id=e.emp_id
+INNER JOIN tb_leave_dtl AS l ON l.id =e.emp_id
+WHERE no_of_leave>15
+ORDER BY no_of_leave ASC
+
+
+
+
+
+

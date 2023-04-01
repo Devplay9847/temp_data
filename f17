@@ -1,0 +1,15 @@
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_emp_project_map_dtl
+SELECT * FROM districtmst
+SELECT * FROM tb_qualification_dtl
+SELECT * FROM tb_project_dtl
+SELECT * FROM tb_designation_dtl
+
+SELECT emp_name,project_name FROM tb_employee_dtl e
+INNER JOIN tb_designation_dtl AS d ON d.id=e.designation_id
+INNER JOIN tb_emp_project_map_dtl AS m ON m.emp_id=e.emp_id
+INNER JOIN tb_project_dtl AS p ON p.project_id=m.project_id
+WHERE designation_name='TEAM LEAD'
+ORDER BY emp_name asc
+
+

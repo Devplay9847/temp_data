@@ -1,0 +1,15 @@
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_emp_project_map_dtl
+SELECT * FROM districtmst
+SELECT * FROM tb_qualification_dtl
+SELECT * FROM tb_project_dtl
+SELECT * FROM tb_designation_dtl
+SELECT * FROM tb_organisation_dtl
+
+select COUNT(emp_name) AS numberofemplyee,project_name from tb_emp_project_map_dtl as pm
+inner join tb_employee_dtl as e on e.emp_id = pm.emp_id
+inner join tb_project_dtl as pd on pm.project_id = pd.project_id
+GROUP BY project_name
+
+
+

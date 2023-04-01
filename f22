@@ -1,0 +1,12 @@
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_emp_project_map_dtl
+SELECT * FROM districtmst
+SELECT * FROM tb_qualification_dtl
+SELECT * FROM tb_project_dtl
+SELECT * FROM tb_designation_dtl
+SELECT * FROM tb_organisation_dtl
+
+SELECT emp_name,age(emp_dob) AS birthdate,emp_salary,age(hire_date) AS workexp,organisation FROM tb_employee_dtl e
+INNER JOIN tb_organisation_dtl AS o ON o.id=e.organisation_id
+WHERE EXTRACT (YEAR FROM age(CURRENT_DATE,hire_date))>1
+

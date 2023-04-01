@@ -1,0 +1,18 @@
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_emp_project_map_dtl
+SELECT * FROM districtmst
+SELECT * FROM tb_qualification_dtl
+SELECT * FROM tb_project_dtl
+SELECT * FROM tb_designation_dtl
+SELECT * FROM tb_organisation_dtl
+
+SELECT emp_name FROM tb_employee_dtl 
+WHERE emp_name LIKE 'a%'
+OR emp_name LIKE 'm%'
+OR emp_name LIKE 'k%'
+OR emp_name LIKE 'p%'
+OR emp_name LIKE '%n'
+OR emp_name LIKE '%l'
+OR emp_name LIKE '%h'
+
+

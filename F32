@@ -1,0 +1,25 @@
+select emp_name, designation_name, project_name  from tb_emp_project_map_dtl as pm
+inner join tb_employee_dtl as e on e.emp_id = pm.emp_id
+inner join tb_project_dtl as pd on pm.project_id = pd.project_id
+inner join tb_designation_dtl as d ON d.id=e.designation_id
+inner join tb_organisation_dtl as o ON o.id=e.organisation_id
+inner join tb_qualification_dtl as q ON q.id=e.qualification_id
+WHERE pm.project_id = e.emp_id 
+GROUP BY emp_name,designation_name,project_name  
+HAVING COUNT(DISTINCT pm.emp_id)>1
+ORDER BY e.emp_name,pd.project_name
+
+select 
+		tb_employee_dtl.emp_name,
+		tb_designation_dtl.designation_name,
+		tb_project_dtl.project_name
+from tb_employee_dtl 
+inner join tb_emp_project_map_dtl on tb_employee_dtl.emp_id = tb_emp_project_map_dtl.emp_id	
+inner join tb_project_dtl on tb_emp_project_map_dtl.project_id = tb_project_dtl.project_id
+inner join tb_designation_dtl on tb_employee_dtl.designation_id = tb_designation_dtl.id
+where 
+tb_emp_project_map_dtl.project_id in (select project_id from tb_emp_project_map_dtl group by project_id
+having count(distinct emp_id) > 1)
+order by tb_project_dtl.project_name
+
+

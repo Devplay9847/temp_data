@@ -1,0 +1,17 @@
+SELECT * FROM tb_qualification_dtl
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_designation_dtl
+SELECT * FROM tb_project_dtl
+SELECT * FROM tb_emp_project_map_dtl
+
+select emp_name, designation_name, project_name  from tb_emp_project_map_dtl as pm
+inner join tb_employee_dtl as e on e.emp_id = pm.emp_id
+inner join tb_project_dtl as pd on pm.project_id = pd.project_id
+inner join tb_designation_dtl as d ON d.id=e.designation_id
+inner join tb_organisation_dtl as o ON o.id=e.organisation_id
+inner join tb_qualification_dtl as q ON q.id=e.qualification_id
+WHERE pm.project_id = e.emp_id 
+GROUP BY emp_name,designation_name,project_name  
+HAVING COUNT(DISTINCT pm.emp_id)>1
+ORDER BY e.emp_name,pd.project_name
+

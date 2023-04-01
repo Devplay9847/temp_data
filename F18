@@ -1,0 +1,13 @@
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_emp_project_map_dtl
+SELECT * FROM districtmst
+SELECT * FROM tb_qualification_dtl
+SELECT * FROM tb_project_dtl
+SELECT * FROM tb_designation_dtl
+
+SELECT 
+emp_name AS "Name of Employee",
+char_length(emp_name) AS "Length of Name"
+FROM tb_employee_dtl
+WHERE char_length(emp_name)>=6
+LIMIT 5

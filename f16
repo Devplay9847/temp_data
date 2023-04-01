@@ -1,0 +1,13 @@
+SELECT * FROM tb_employee_dtl
+SELECT * FROM tb_emp_project_map_dtl
+SELECT * FROM districtmst
+SELECT * FROM tb_qualification_dtl
+SELECT * FROM tb_project_dtl
+
+
+SELECT COUNT(emp_name) as numofemp , project_name FROM tb_employee_dtl e
+INNER JOIN tb_emp_project_map_dtl AS m ON m.emp_id=e.emp_id
+INNER JOIN tb_project_dtl AS p ON p.project_id=e.emp_id
+GROUP BY project_name
+HAVING COUNT(emp_name)<5 
+

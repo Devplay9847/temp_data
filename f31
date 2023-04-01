@@ -1,0 +1,30 @@
+select distinct p.project_name,
+	(select count(ep.project_id) from tb_employee_dtl e 
+inner join tb_emp_project_map_dtl ep on e.emp_id = ep.emp_id 
+and ep.project_id = p.project_id
+	 where e.qualification_id = '1') as m_tech,
+	(select count(ep.project_id) from tb_employee_dtl e 
+		 inner join tb_emp_project_map_dtl ep on e.emp_id = ep.emp_id 
+		 and ep.project_id = p.project_id
+	 where e.qualification_id = '2') as be_it,
+	(select count(ep.project_id) from tb_employee_dtl e 
+		 inner join tb_emp_project_map_dtl ep on e.emp_id = ep.emp_id
+		  and ep.project_id = p.project_id
+	 where e.qualification_id = '3') as mca,
+	(select count(ep.project_id) from tb_employee_dtl e 
+	 	inner join tb_emp_project_map_dtl ep on e.emp_id = ep.emp_id 
+	 	 and ep.project_id = p.project_id
+	 where e.qualification_id = '5') as bsc
+from tb_project_dtl p
+inner join tb_emp_project_map_dtl ep on p.project_id = ep.project_id
+inner join tb_employee_dtl e on ep.emp_id = e.emp_id
+order by p.project_name
+
+
+select project_name, COUNT(emp_name) AS numofempl,qualification_name   from tb_emp_project_map_dtl as pm
+inner join tb_employee_dtl as e on e.emp_id = pm.emp_id
+inner join tb_project_dtl as pd on pm.project_id = pd.project_id
+inner join tb_designation_dtl as d ON d.id=e.designation_id
+inner join tb_organisation_dtl as o ON o.id=e.organisation_id
+inner join tb_qualification_dtl as q ON q.id=e.qualification_id
+GROUP BY qualification_name,project_name
